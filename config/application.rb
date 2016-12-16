@@ -8,7 +8,10 @@ Bundler.require(*Rails.groups)
 
 module Microposts
   class Application < Rails::Application
-
+    
+    #日本語化
+    config.i18n.default_locale = :ja
+    
     config.active_record.raise_in_transactional_callbacks = true
     
     config.generators do |g|
@@ -19,3 +22,4 @@ module Microposts
     end
   end
 end
+
