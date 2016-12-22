@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
     has_secure_password
+
+  # プロフィールは２文字以上250文字以下
+  validates :profile , length: { minimum: 2, maximum: 250 }
+
+
 end
