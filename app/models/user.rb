@@ -9,6 +9,6 @@ class User < ActiveRecord::Base
 
   # プロフィールは２文字以上250文字以下
   validates :profile , length: { minimum: 2, maximum: 250 }
-
+  has_many :microposts
 
 end
