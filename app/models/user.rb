@@ -8,7 +8,28 @@ class User < ActiveRecord::Base
     has_secure_password
 
   # プロフィールは２文字以上250文字以下
-  validates :profile , length: { minimum: 2, maximum: 250 }
+  validates :profile , length: { minimum: 2, maximum: 250 }  #, on: :update
   has_many :microposts
+  has_many :following_relationships, class_name:  "Relationship",
+                                     foreign_key: "follower_id",
+                                     dependent:   :destroy
+  has_many :following_users, through: :following_relationships, source: :followed
+  
+  # 他のユーザーをフォローする
+  def follow(other_user)
+    following_relationships.find_or_create_by(followed_id: other_user.id)
+  end
+
+  # フォローしているユーザーをアンフォローする
+  def unfollow(other_user)
+    following_relationship = following_relationships.find_by(followed_id: other_user.id)
+    following_relationship.destroy if following_relationship
+  end
+
+  # あるユーザーをフォローしているかどうか？
+  def following?(other_user)
+    following_users.include?(other_user)
+  end
+
 
 end
