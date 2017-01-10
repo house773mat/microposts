@@ -35,6 +35,10 @@ gem 'bcrypt', '~> 3.1.7'
 #エラーメッセージの日本語化
 gem 'rails-i18n'
 
+#アクティブレコードを見やすくする
+gem 'hirb'
+gem 'hirb-unicode'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

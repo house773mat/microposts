@@ -1,0 +1,15 @@
+<!--フォローしている人たちを表示する。クリックしたらその人のページへ行く-->
+<div class="row">
+  <%= render 'aside' %>
+  <div class="col-md-8">
+    <h2><%= @following.count %>follows</h2>
+    <% @following.each do |t| %>
+        <div class="col-md-2"><%= link_to gravatar_for(t, size: 50), t %></div> <!-- 画像を表示 -->
+        <div class="col-md-10">
+            <p><%= t.name %></p>                               <!-- 名前を表示 -->
+            <p><%= t.profile %></p>                            <!-- プロフィールを表示 -->
+            <p><%= link_to "view user profile", t %></p>       <!-- ユーザーページへリンク -->
+        </div>　
+    <% end %>
+  </div>
+</div>

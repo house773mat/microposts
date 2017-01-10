@@ -10,10 +10,19 @@ class User < ActiveRecord::Base
   # プロフィールは２文字以上250文字以下
   validates :profile , length: { minimum: 2, maximum: 250 }  #, on: :update
   has_many :microposts
+  
+  #フォローしているユーザー
   has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
                                      dependent:   :destroy
   has_many :following_users, through: :following_relationships, source: :followed
+  
+
+  has_many :follower_relationships, class_name:  "Relationship",
+                                    foreign_key: "followed_id",
+                                    dependent:   :destroy
+  has_many :follower_users, through: :follower_relationships, source: :follower
+  
   
   # 他のユーザーをフォローする
   def follow(other_user)
