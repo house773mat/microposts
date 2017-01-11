@@ -39,6 +39,9 @@ gem 'rails-i18n'
 gem 'hirb'
 gem 'hirb-unicode'
 
+#ページネーション
+gem 'kaminari'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

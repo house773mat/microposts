@@ -3,6 +3,7 @@
   <%= render 'aside' %>
   <div class="col-md-8">
     <h2><%= @follower.count %>followers</h2>
+    <p><%= paginate @follower_page %></p>
     <% @follower.each do |t| %>
         <div class="col-md-2"><%= link_to gravatar_for(t, size: 50), t %></div> <!-- 画像を表示 -->
         <div class="col-md-10">
